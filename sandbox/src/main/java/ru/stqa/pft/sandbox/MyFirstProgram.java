@@ -22,12 +22,13 @@ public class MyFirstProgram {
 
   public static void main(String[] args) {
 
-    Point p1 = new Point(1,2,3,4);
-    Point p2 = new Point(1,2,3,4);
-    System.out.println("Расстояние между одной точкой с координатами " + p1.x1 + " и " + p1.y2 + " и другой точкой с координатами " + p2.x2 + " и " + p2.y2 + " = " + p1.distance());
+    Point p1 = new Point(1,2);
+    Point p2 = new Point(3,4);
+
+    System.out.println("Расстояние между одной точкой с координатами " + p1.x + " и " + p1.y + " и другой точкой с координатами " + p2.x + " и " + p2.y + " = " + p1.distance(p2));
 
   }
-  
+
 }
 
 
