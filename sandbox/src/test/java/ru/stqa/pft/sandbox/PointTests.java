@@ -17,7 +17,7 @@ public  void testDistance() {
 
 }
 
-
+/*
 public class PointTests {
 
   @Test
@@ -29,5 +29,5 @@ public  void testDistance() {
   }
 
 }
-
+*/
 
