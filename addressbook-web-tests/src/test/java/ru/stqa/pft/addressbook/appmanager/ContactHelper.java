@@ -24,8 +24,6 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactForm(ContactData contactData) {
     typeContact(By.name("firstname"), contactData.getFirstname());
-    clickContact(By.name("middlename"));
-    clickContact(By.name("theform"));
     typeContact(By.name("lastname"), contactData.getLastname());
     typeContact(By.name("mobile"), contactData.getMobile());
     typeContact(By.name("email"), contactData.getEmail());
@@ -39,5 +37,25 @@ public class ContactHelper extends HelperBase {
 
   public void initCreateContactPage() {
     clickContact(By.linkText("add new"));
+  }
+
+  public void selectContact() {
+    wd.findElement(By.name("selected[]")).click();
+  }
+
+  public void deleteSelectedContacts() {
+    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+  }
+
+  public void getAcceptAlert() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void initContactModification() {
+    wd.findElement(By.xpath("(//img[@alt='Edit'])")).click();
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
   }
 }
