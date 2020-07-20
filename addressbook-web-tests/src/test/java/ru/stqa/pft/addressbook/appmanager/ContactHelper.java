@@ -23,13 +23,13 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactForm(ContactData contactData) {
-    typeContact(By.name("firstname"), contactData.getFirstname());
-    typeContact(By.name("lastname"), contactData.getLastname());
-    typeContact(By.name("mobile"), contactData.getMobile());
-    typeContact(By.name("email"), contactData.getEmail());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("mobile"), contactData.getMobile());
+    type(By.name("email"), contactData.getEmail());
   }
 
-  private void typeContact(By firstname, String text) {
+  public void type(By firstname, String text) {
     clickContact(firstname);
     wd.findElement(firstname).clear();
     wd.findElement(firstname).sendKeys(text);
