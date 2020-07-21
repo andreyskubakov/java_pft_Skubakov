@@ -14,9 +14,7 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void returnToHomePage() {
-    click(By.linkText("home"));
-  }
+//  public void returnToHomePage() { click(By.linkText("home")); }
 
   public void submitContactCreation() {
     click(By.xpath("(//input[@name='submit'])[2]"));
@@ -37,6 +35,7 @@ public class ContactHelper extends HelperBase {
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
+
   }
 
   //  public void type(By locator, String text) {
