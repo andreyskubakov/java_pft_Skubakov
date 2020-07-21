@@ -2,41 +2,53 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
+
+
 
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
 
   public void returnToHomePage() {
-    clickContact(By.linkText("home"));
+    click(By.linkText("home"));
   }
 
   public void submitContactCreation() {
-    clickContact(By.xpath("(//input[@name='submit'])[2]"));
+    click(By.xpath("(//input[@name='submit'])[2]"));
   }
 
-  private void clickContact(By locator) {
+  public void click(By locator) {
     wd.findElement(locator).click();
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());
     type(By.name("mobile"), contactData.getMobile());
     type(By.name("email"), contactData.getEmail());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
-  public void type(By firstname, String text) {
-    clickContact(firstname);
-    wd.findElement(firstname).clear();
-    wd.findElement(firstname).sendKeys(text);
-  }
+  //  public void type(By locator, String text) {
+//    click(locator);
+//    if (text != null) {
+//      wd.findElement(locator).clear();
+//      wd.findElement(locator).sendKeys(text);
+//    }
+//  }
 
   public void initCreateContactPage() {
-    clickContact(By.linkText("add new"));
+    click(By.linkText("add new"));
   }
 
   public void selectContact() {

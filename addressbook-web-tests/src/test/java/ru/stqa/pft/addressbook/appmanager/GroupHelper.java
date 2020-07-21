@@ -19,12 +19,17 @@ public class GroupHelper extends HelperBase {
   }
 
   public void fillGroupForm(GroupData groupData) {
-    type(By.name("group_name"), groupData.getName());
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+      type(By.name("group_name"), groupData.getName());
+    type(By.name("group_header"), groupData.getHeader());
+    type(By.name("group_footer"), groupData.getFooter());
   }
+
+//  public void type(By locator, String text) {
+//    click(locator);
+//    if (text != null) {
+//      wd.findElement(locator).clear();
+//      wd.findElement(locator).sendKeys(text);
+//    }
 
   public void initGroupCreation() {
     click(By.name("new"));
