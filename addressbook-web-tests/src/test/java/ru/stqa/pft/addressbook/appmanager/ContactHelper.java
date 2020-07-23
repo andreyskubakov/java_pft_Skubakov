@@ -25,6 +25,8 @@ public class ContactHelper extends HelperBase {
     wd.findElement(locator).click();
   }
 
+
+
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
     type(By.name("lastname"), contactData.getLastname());

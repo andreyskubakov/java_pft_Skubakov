@@ -6,6 +6,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactDeletionTests extends TestBase {
 
 
+
   @Test
   public void testContactDeletion() {
     app.getNavigationHelper().returnToHomePage();
