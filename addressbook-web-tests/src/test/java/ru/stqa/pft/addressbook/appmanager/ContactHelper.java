@@ -18,7 +18,8 @@ public class ContactHelper extends HelperBase {
 //  public void returnToHomePage() { click(By.linkText("home")); }
 
   public void submitContactCreation() {
-    click(By.xpath("(//input[@name='submit'])[2]"));
+    //click(By.xpath("(//input[@name='submit'])[2]"));
+    click(By.name("submit"));
   }
 
   public void click(By locator) {
@@ -41,13 +42,13 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  //  public void type(By locator, String text) {
-//    click(locator);
-//    if (text != null) {
-//      wd.findElement(locator).clear();
-//      wd.findElement(locator).sendKeys(text);
-//    }
-//  }
+    public void type(By locator, String text) {
+    click(locator);
+    if (text != null) {
+      wd.findElement(locator).clear();
+      wd.findElement(locator).sendKeys(text);
+    }
+  }
 
   public void initCreateContactPage() {
     click(By.linkText("add new"));
@@ -77,6 +78,7 @@ public class ContactHelper extends HelperBase {
     initCreateContactPage();
     fillContactForm(contact, true);
     submitContactCreation();
+    returnToHomePage();
   }
 
   public boolean isThereAContact() {
