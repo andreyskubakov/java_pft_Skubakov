@@ -101,7 +101,10 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements) {
       String firstname = element.getText();
       String lastname = element.getText();
-      ContactData contact = new ContactData(firstname,lastname,null, null, null);
+//      String mobile = element.getText();
+//      String email = element.getText();
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
       contacts.add(contact);
     }
     return contacts;
