@@ -10,6 +10,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.openqa.selenium.By.className;
+import static org.openqa.selenium.By.cssSelector;
+
 public class ContactHelper extends HelperBase {
 
 
@@ -97,14 +100,16 @@ public class ContactHelper extends HelperBase {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList();
-    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));//By.xpath("//tr[@name='entry']")
+
     for (WebElement element : elements) {
-      String firstname = element.getText();
-      String lastname = element.getText();
-//      String mobile = element.getText();
-//      String email = element.getText();
-      String id = element.findElement(By.tagName("input")).getAttribute("value");
-      ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(2).getText();
+//      String lastname = cells.get(1).getText();
+//      String mobile = cells.get(5).getText();
+//      String email = cells.get(4).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(id, firstname, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
