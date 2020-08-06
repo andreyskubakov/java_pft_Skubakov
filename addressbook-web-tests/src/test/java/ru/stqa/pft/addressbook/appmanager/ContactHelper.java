@@ -73,7 +73,7 @@ public class ContactHelper extends HelperBase {
 
   public void initContactModification() {
     List<WebElement> edit = wd.findElements(By.xpath("//img[@alt='Edit']"));
-    edit.get(2).click();
+    edit.get(3).click();
   }
 
   public void submitContactModification() {
@@ -106,11 +106,11 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
-//      String lastname = cells.get(1).getText();
+      String lastname = cells.get(1).getText();
 //      String mobile = cells.get(5).getText();
 //      String email = cells.get(4).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, firstname, null, null, null, null);
+      ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
       contacts.add(contact);
     }
     return contacts;
