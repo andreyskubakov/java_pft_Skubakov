@@ -6,9 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.tests.Contacts;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class ContactHelper extends HelperBase {
@@ -58,7 +60,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void selectContact(int index) { wd.findElements(By.name("selected[]")).get(index).click(); }
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click(); }
 
   public void deleteSelectedContacts() {
     wd.findElement(By.xpath("//input[@value='Delete']")).click();
@@ -68,9 +71,11 @@ public class ContactHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void initContactModification(int index) {
-    List<WebElement> edit = wd.findElements(By.xpath("//img[@alt='Edit']"));
-    edit.get(index).click();
+  public void initContactModificationById(int id) {
+    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    WebElement row = checkbox.findElement(By.xpath("./../.."));
+    List<WebElement> cells = row.findElements(By.tagName("td"));
+    cells.get(7).findElement(By.tagName("a")).click();
   }
 
   public void submitContactModification() {
@@ -83,15 +88,16 @@ public class ContactHelper extends HelperBase {
     submitContactCreation();
     returnToHomePage();
   }
-  public void modify(int index, ContactData contact) {
-    selectContact(index);
-    initContactModification(index);
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactModificationById(contact.getId());///
     fillContactForm(contact, false);
     submitContactModification();
     returnToHomePage();
   }
-  public void delete(int index) {
-    selectContact(index);
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContacts();
     getAcceptAlert();
     returnToHomePage();
@@ -109,10 +115,9 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList();
-    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));//By.xpath("//tr[@name='entry']")
-
+  public Contacts all() {
+    Contacts contacts = new Contacts();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
     for (WebElement element : elements) {
       List<WebElement> cells = element.findElements(By.tagName("td"));
       String firstname = cells.get(2).getText();
@@ -124,4 +129,5 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
 }
