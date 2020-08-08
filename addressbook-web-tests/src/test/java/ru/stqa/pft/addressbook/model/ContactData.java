@@ -8,9 +8,14 @@ public class ContactData {
   private String lastname;
   private String mobile;
   private String email;
+  private String email2;
+  private String email3;
+  private String allEmails;
   private String group;
   private String home;
   private String work;
+  private String allPhones;
+  private String address;
 
   public ContactData withId(int id) {
     this.id = id;
@@ -45,13 +50,39 @@ public class ContactData {
 
   public ContactData withWorkPhone(String work) {
     this.work = work;
-    return null;
+    return this;
   }
 
   public ContactData withEmail(String email) {
     this.email = email;
     return this;
   }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withHomeAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContactData withAllEmail(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
 
   public String getFirstname() {
     return firstname;
@@ -65,9 +96,13 @@ public class ContactData {
     return mobile;
   }
 
-  public String getEmail() {
-    return email;
-  }
+  public String getEmail() { return email; }
+
+  public String getEmail2() { return email2; }
+
+  public String getEmail3() { return email3; }
+
+  public String getAllEmails() { return allEmails; }
 
   public String getGroup() { return group; }
 
@@ -76,6 +111,10 @@ public class ContactData {
   public String getHomePhone() { return home; }
 
   public String getWorkPhone() { return work; }
+
+  public String getAllPhones() { return allPhones; }
+
+  public String getHomeAddress() { return address; }
 
 
   @Override
@@ -88,14 +127,15 @@ public class ContactData {
             Objects.equals(lastname, that.lastname) &&
             Objects.equals(mobile, that.mobile) &&
             Objects.equals(email, that.email) &&
-            Objects.equals(group, that.group);
-//            Objects.equals(home, that.home) &&
-//            Objects.equals(work, that.work);
+            Objects.equals(group, that.group) &&
+            Objects.equals(home, that.home) &&
+            Objects.equals(work, that.work) &&
+            Objects.equals(address, that.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, mobile, email, group);
+    return Objects.hash(id, firstname, lastname, mobile, email, group, home, work, address);
   }
 
   @Override
@@ -107,8 +147,9 @@ public class ContactData {
             ", mobile='" + mobile + '\'' +
             ", email='" + email + '\'' +
             ", group='" + group + '\'' +
-//            ", home='" + home + '\'' +
-//            ", work='" + work + '\'' +
+            ", home='" + home + '\'' +
+            ", work='" + work + '\'' +
+            ", work='" + address + '\'' +
             '}';
   }
 
