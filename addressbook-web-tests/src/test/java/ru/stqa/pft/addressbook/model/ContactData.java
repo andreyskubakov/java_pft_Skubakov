@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.io.File;
 import java.util.Objects;
 
 public class ContactData {
@@ -16,6 +17,7 @@ public class ContactData {
   private String work;
   private String allPhones;
   private String address;
+  private File photo;
 
   public ContactData withId(int id) {
     this.id = id;
@@ -45,7 +47,6 @@ public class ContactData {
   public ContactData withHomePhone(String home) {
     this.home = home;
     return this;
-
   }
 
   public ContactData withWorkPhone(String work) {
@@ -83,6 +84,10 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
   public String getFirstname() {
     return firstname;
@@ -116,6 +121,8 @@ public class ContactData {
 
   public String getHomeAddress() { return address; }
 
+  public File getPhoto() { return photo; }
+
 
   @Override
   public boolean equals(Object o) {
@@ -124,18 +131,18 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return id == that.id &&
             Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname) &&
-            Objects.equals(mobile, that.mobile) &&
-            Objects.equals(email, that.email) &&
-            Objects.equals(group, that.group) &&
-            Objects.equals(home, that.home) &&
-            Objects.equals(work, that.work) &&
-            Objects.equals(address, that.address);
+            Objects.equals(lastname, that.lastname);
+//            Objects.equals(mobile, that.mobile) &&
+//            Objects.equals(email, that.email) &&
+//            Objects.equals(group, that.group) &&
+//            Objects.equals(home, that.home) &&
+//            Objects.equals(work, that.work) &&
+//            Objects.equals(address, that.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, mobile, email, group, home, work, address);
+    return Objects.hash(id, firstname, lastname);
   }
 
   @Override
@@ -144,13 +151,12 @@ public class ContactData {
             "id='" + id + '\'' +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
-            ", mobile='" + mobile + '\'' +
-            ", email='" + email + '\'' +
-            ", group='" + group + '\'' +
-            ", home='" + home + '\'' +
-            ", work='" + work + '\'' +
-            ", work='" + address + '\'' +
+//            ", mobile='" + mobile + '\'' +
+//            ", email='" + email + '\'' +
+//            ", group='" + group + '\'' +
+//            ", home='" + home + '\'' +
+//            ", work='" + work + '\'' +
+//            ", work='" + address + '\'' +
             '}';
   }
-
 }
