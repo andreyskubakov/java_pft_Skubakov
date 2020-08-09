@@ -1,0 +1,32 @@
+<list>
+  <contact>
+    <firstname>Don 0</firstname>
+    <lastname>Karleone 0</lastname>
+    <mobile>7777777 0</mobile>
+    <email>email 0</email>
+  </contact>
+  <contact>
+    <firstname>Don 1</firstname>
+    <lastname>Karleone 1</lastname>
+    <mobile>7777777 1</mobile>
+    <email>email 1</email>
+  </contact>
+  <contact>
+    <firstname>Don 2</firstname>
+    <lastname>Karleone 2</lastname>
+    <mobile>7777777 2</mobile>
+    <email>email 2</email>
+  </contact>
+  <contact>
+    <firstname>Don 3</firstname>
+    <lastname>Karleone 3</lastname>
+    <mobile>7777777 3</mobile>
+    <email>email 3</email>
+  </contact>
+  <contact>
+    <firstname>Don 4</firstname>
+    <lastname>Karleone 4</lastname>
+    <mobile>7777777 4</mobile>
+    <email>email 4</email>
+  </contact>
+</list>
