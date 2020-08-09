@@ -12,3 +12,9 @@ dependencies {
     implementation 'com.beust:jcommander:1.78'
     implementation 'com.thoughtworks.xstream:xstream:1.4.12'
 }
+
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+}
