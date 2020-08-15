@@ -1,3 +1,23 @@
-Don 0;Karleone 0;7777777 0;email 0
-Don 1;Karleone 1;7777777 1;email 1
-Don 2;Karleone 2;7777777 2;email 2
+<list>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstname>Don 0</firstname>
+    <lastname>Karleone 0</lastname>
+    <mobile>7777777 0</mobile>
+    <email>email 0</email>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstname>Don 1</firstname>
+    <lastname>Karleone 1</lastname>
+    <mobile>7777777 1</mobile>
+    <email>email 1</email>
+  </ru.stqa.pft.addressbook.model.ContactData>
+  <ru.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstname>Don 2</firstname>
+    <lastname>Karleone 2</lastname>
+    <mobile>7777777 2</mobile>
+    <email>email 2</email>
+  </ru.stqa.pft.addressbook.model.ContactData>
+</list>

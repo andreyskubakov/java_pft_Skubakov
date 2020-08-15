@@ -73,6 +73,8 @@ import java.util.Objects;
     return "GroupData{" +
             "id='" + id + '\'' +
             ", name='" + name + '\'' +
+            ", header='" + header + '\'' +
+            ", footer='" + footer + '\'' +
             '}';
   }
 
@@ -90,6 +92,6 @@ import java.util.Objects;
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, header, footer);
+    return Objects.hash(id, name, header); //, footer
   }
 }

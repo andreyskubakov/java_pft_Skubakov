@@ -1,13 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
 import com.thoughtworks.xstream.XStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -39,10 +40,10 @@ public class GroupCreationTests extends TestBase {
   @Test(dataProvider = "validGroups")
   public void testGroupCreation(GroupData group) {
     app.goTo().groupPage();
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size() + 1));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
       }
@@ -50,11 +51,11 @@ public class GroupCreationTests extends TestBase {
   @Test(enabled = false)
   public void testBadGroupCreation() {
     app.goTo().groupPage();
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData group = new GroupData().withName("test'").withHeader("test2").withFooter("test3");
     app.group().create(group);
     assertThat(app.group().count(), equalTo(before.size()));
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
     assertThat(after, equalTo(before));
   }
 }

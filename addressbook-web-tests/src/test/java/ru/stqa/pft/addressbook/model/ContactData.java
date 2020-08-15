@@ -1,17 +1,20 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
-
+@XStreamAlias("contact")
 @Entity
 @Table(name = "addressbook")
 
 public class ContactData {
 
+  @XStreamOmitField
   @Id
   @Column(name = "id")
   private int id = Integer.MAX_VALUE;
@@ -175,9 +178,9 @@ public class ContactData {
     ContactData that = (ContactData) o;
     return id == that.id &&
             Objects.equals(firstname, that.firstname) &&
-            Objects.equals(lastname, that.lastname);
-//            Objects.equals(mobile, that.mobile) &&
-//            Objects.equals(email, that.email) &&
+            Objects.equals(lastname, that.lastname) &&
+            Objects.equals(mobile, that.mobile) &&
+            Objects.equals(email, that.email);
 //            Objects.equals(group, that.group) &&
 //            Objects.equals(home, that.home) &&
 //            Objects.equals(work, that.work) &&
@@ -186,7 +189,7 @@ public class ContactData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
+    return Objects.hash(id, firstname, lastname, mobile, email);
   }
 
   @Override
@@ -195,8 +198,8 @@ public class ContactData {
             "id='" + id + '\'' +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
-//            ", mobile='" + mobile + '\'' +
-//            ", email='" + email + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", email='" + email + '\'' +
 //            ", group='" + group + '\'' +
 //            ", home='" + home + '\'' +
 //            ", work='" + work + '\'' +
