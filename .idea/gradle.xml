@@ -14,7 +14,6 @@
             <option value="$PROJECT_DIR$/addressbook-web-tests" />
           </set>
         </option>
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="delegatedBuild" value="false" />
@@ -27,7 +26,16 @@
             <option value="$PROJECT_DIR$/sandbox" />
           </set>
         </option>
-        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/test-mantis" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../Tools/gradle-2.10" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/test-mantis" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
