@@ -32,28 +32,31 @@ public class ContactHelper extends HelperBase {
 
 
 
-//  public void fillContactFormWithGroup(ContactData contactData, boolean creation) {
+  public void fillContactFormWithGroup(ContactData contactData, boolean creation) {
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("mobile"), contactData.getMobilePhone());
+    type(By.name("email"), contactData.getEmail());
+//    //attach(By.name("photo"), contactData.getPhoto());
+//
+    if (creation) {
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
+      }
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
+
+  }
+
+//  public void fillContactForm(ContactData contactData) {
 //    type(By.name("firstname"), contactData.getFirstname());
 //    type(By.name("lastname"), contactData.getLastname());
 //    type(By.name("mobile"), contactData.getMobilePhone());
 //    type(By.name("email"), contactData.getEmail());
 //    //attach(By.name("photo"), contactData.getPhoto());
-//
-//    if (creation) {
-//      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-//    } else {
-//      Assert.assertFalse(isElementPresent(By.name("new_group")));
-//    }
-//
 //  }
-
-  public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"), contactData.getFirstname());
-    type(By.name("lastname"), contactData.getLastname());
-    type(By.name("mobile"), contactData.getMobilePhone());
-    type(By.name("email"), contactData.getEmail());
-    //attach(By.name("photo"), contactData.getPhoto());
-  }
 
     public void type(By locator, String text) {
     click(locator);
@@ -102,11 +105,12 @@ public class ContactHelper extends HelperBase {
 
   public void create(ContactData contact, boolean creation) {
     initCreateContactPage();
-    fillContactForm(contact);
+    fillContactFormWithGroup(contact, true);
     submitContactCreation();
     contactCache = null;
     returnToHomePage();
   }
+
 
 //  public void modifyWithGroup(ContactData contact) {
 //    selectContactById(contact.getId());
@@ -117,10 +121,10 @@ public class ContactHelper extends HelperBase {
 //    returnToHomePage();
 //  }
 
-  public void modify(ContactData contact) {
+  public void modify(ContactData contact) throws InterruptedException {
     selectContactById(contact.getId());
     initContactModificationById(contact.getId());///
-    fillContactForm(contact);
+    fillContactFormWithGroup(contact, true);
     submitContactModification();
     contactCache = null;
     returnToHomePage();

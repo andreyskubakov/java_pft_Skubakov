@@ -39,7 +39,7 @@ public class ContactCreationTests extends TestBase {
 
 
   @Test(dataProvider = "validContacts")
-  public void testContactCreation(ContactData contact) throws Exception {
+  public void testContactCreation(ContactData contact) {
     Contacts before = app.db().contacts();
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
